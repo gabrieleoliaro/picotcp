@@ -1,5 +1,6 @@
 CC=gcc
 CFLAGS=-ggdb -I../build/include/ -L../build/lib/ -lpicotcp -lvdeplug
+
 APPNAME=test_tftp_app_client
 
 .PHONY: clean

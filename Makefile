@@ -97,6 +97,8 @@ CFLAGS+= -Wconversion -Wcast-align -Wmissing-prototypes -pg
 # options for supressing warnings
 CFLAGS+= -Wno-missing-field-initializers
 
+CFLAGS+= -fdump-rtl-expand
+
 ifeq ($(CC),clang)
 CFLAGS+= -Wunreachable-code-break -Wpointer-bool-conversion -Wmissing-variable-declarations
 endif

@@ -211,12 +211,40 @@ int pico_ipv4_is_valid_src(uint32_t address, struct pico_device *dev)
 {
     if (pico_ipv4_is_broadcast(address)) {
         dbg("Source is a broadcast address, discard packet\n");
+
+
+        yellow();
+        printf("\t%s:%d: ", __FILE__, __LINE__);
+        blue();
+        printf("Source is a broadcast address, discard packet\n");
+        back2white();
+
+
+
         return 0;
     } else if ( pico_ipv4_is_multicast(address)) {
         dbg("Source is a multicast address, discard packet\n");
+
+        yellow();
+        printf("\t%s:%d: ", __FILE__, __LINE__);
+        blue();
+        printf("Source is a multicast address, discard packet\n");
+        back2white();
+
+
+
         return 0;
     } else if (pico_ipv4_is_invalid_loopback(address, dev)) {
         dbg("Source is a loopback address, discard packet\n");
+
+
+        yellow();
+        printf("\t%s:%d: ", __FILE__, __LINE__);
+        blue();
+        printf("Source is a loopback address, discard packet\n");
+        back2white();
+
+
         return 0;
     } else {
 #ifdef PICO_SUPPORT_AODV

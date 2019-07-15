@@ -50,6 +50,22 @@
 #include "pico_faulty.h"
 #endif
 
+void red() {
+    printf("\033[1;31m");
+}
+void back2white() {
+    printf("\033[0m");
+}
+void yellow() {
+  printf("\033[1;33m");
+}
+
+void blue() {
+    printf("\033[1;34m");
+}
+
+
+
 void app_udpecho(char *args);
 void app_tcpecho(char *args);
 void app_udpclient(char *args);
@@ -259,11 +275,24 @@ int main(int argc, char **argv)
             }
 
             dev = pico_tap_create(name);
+            yellow();
+            printf("\t%s:%d: ", __FILE__, __LINE__);
+            red();
+            printf("created tap device, result: dev=%p\n",dev);
+            back2white();
+            
             if (!dev) {
                 perror("Creating tap");
                 exit(1);
             }
 
+            yellow();
+            printf("\t%s:%d: ", __FILE__, __LINE__);
+            red();
+            printf("params for the tap?: addr=%s, nm=%s\n", addr, nm);
+            back2white();
+            
+            
             pico_string_to_ipv4(addr, &ipaddr.addr);
             pico_string_to_ipv4(nm, &netmask.addr);
             pico_ipv4_link_add(dev, ipaddr, netmask);
@@ -619,6 +648,13 @@ check:      if (!name || !area0 || !area1) {
         }
         case 'a':
         {
+            
+            yellow();
+            printf("\t%s:%d: ", __FILE__, __LINE__);
+            red();
+            printf("app argument!\n");
+            back2white();
+            
             char *name = NULL, *args = NULL;
             printf("+++ OPTARG %s\n", optarg);
             args = cpy_arg(&name, optarg);
@@ -627,6 +663,11 @@ check:      if (!name || !area0 || !area1) {
             IF_APPNAME("udpecho") {
                 app_udpecho(args);
             } else IF_APPNAME("tcpecho") {
+                yellow();
+                printf("\t%s:%d: ", __FILE__, __LINE__);
+                red();
+                printf("launching tpecho app now!\n");
+                back2white();
                 app_tcpecho(args);
             } else IF_APPNAME("udpclient") {
                 app_udpclient(args);
