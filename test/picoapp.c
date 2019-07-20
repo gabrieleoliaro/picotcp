@@ -36,15 +36,6 @@
 #include "pico_dev_radiotest.h"
 #include "pico_dev_radio_mgr.h"
 
-#include <poll.h>
-#include <errno.h>
-#include <unistd.h>
-#include <signal.h>
-#include <getopt.h>
-#include <string.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <libgen.h>
 
 #ifdef FAULTY
 #include "pico_faulty.h"
@@ -68,6 +59,7 @@ void blue() {
 
 void app_udpecho(char *args);
 void app_tcpecho(char *args);
+void app_dir_service(char *args);
 void app_udpclient(char *args);
 void app_tcpclient(char *args);
 void app_tcpbench(char *args);
@@ -666,9 +658,16 @@ check:      if (!name || !area0 || !area1) {
                 yellow();
                 printf("\t%s:%d: ", __FILE__, __LINE__);
                 red();
-                printf("launching tpecho app now!\n");
+                printf("launching tcpecho app now!\n");
                 back2white();
                 app_tcpecho(args);
+            } else IF_APPNAME("dir_service") {
+                yellow();
+                printf("\t%s:%d: ", __FILE__, __LINE__);
+                red();
+                printf("launching dir_service app now!\n");
+                back2white();
+                app_dir_service(args);
             } else IF_APPNAME("udpclient") {
                 app_udpclient(args);
             } else IF_APPNAME("tcpclient") {

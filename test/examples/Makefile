@@ -10,6 +10,7 @@ $(PREFIX)/examples/%.o: %.c
 OBJS:= \
 $(PREFIX)/examples/dhcp_client.o \
 $(PREFIX)/examples/dhcp_server.o \
+$(PREFIX)/examples/dir_service.o \
 $(PREFIX)/examples/dns_sd.o \
 $(PREFIX)/examples/dnsclient.o \
 $(PREFIX)/examples/mdns.o \
